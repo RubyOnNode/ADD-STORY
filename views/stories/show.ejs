@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col s12 m8">
+    <h3>
+      <%= story.title %>
+    </h3>
+    <div class="card story">
+      <div class="card-content">
+        <span class="card-title"
+          ><%= formatDate(story.createdAt,'MMMM Do YYYY, h:mm:ss a') %></span
+        >
+        <%- story.body %>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m4">
+    <div class="card center-align">
+      <div class="card-content">
+        <span class="card-title"><%= story.user.displayName %></span>
+        <img src="<%= story.user.image %>" class="circle responsive-img" />
+      </div>
+      <div class="card-action">
+        <a href="/stories/user/<%=story.user._id %>"
+          >More From<%= story.user.firtName %></a
+        >
+      </div>
+    </div>
+  </div>
+</div>

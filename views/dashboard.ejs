@@ -1,0 +1,48 @@
+<div class="container">
+  <h2>Dashboard</h2>
+  <h1>Welcome <%= name %></h1>
+  <% if(stories.length !== 0){ %>
+
+  <table class="striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% stories.forEach( (story)=>{ %>
+      <tr>
+        <td><a href="/stories/<%= story._id %>"><%= story.title %></a></td>
+        <td><%= formatDate(story.createdAt,'MMMM Do YYYY, h:mm:ss a') %></td>
+        <td><span class="dash-status"><%= story.status %></span></td>
+        <td>
+          <a
+            href="/stories/edit/<%= story._id %>"
+            class="btn green"
+            title="Edit"
+            ><i class="fas fa-edit"></i
+          ></a>
+        </td>
+        <td>
+          <form
+            action="/stories/<%= story._id %>"
+            method="POST"
+            id="delete-form"
+          >
+            <input type="hidden" name="_method" value="DELETE" />
+            <button type="submit" class="btn red" title="DELETE">
+              <i class="fas fa-trash"></i>
+            </button>
+          </form>
+        </td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+
+  <% }else{ %>
+  <p>You Have No Stories</p>
+  <% } %>
+</div>
